@@ -22,7 +22,8 @@ export class CommentService {
                 createdAt: 'desc',
             },
         });
-    }
+    } 
+    
 
     async getCommentById(id:number): Promise<CommentDto[]> {
         return await this.prisma.comment.findMany({

@@ -12,9 +12,10 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { BlogModule } from './blog/blog.module';
 import { ApartmentModule } from './apartment/apartment.module';
 import { ApartmentOwnerModule } from './apartment-owner/apartment-owner.module';
-import { ManhModule } from './manh/manh.module';
 import { UserPointModule } from './user-point/user-point.module';
 import { CommentModule } from './comment/comment.module';
+import { ContactModule } from './contact/contact.module';
+import { CategoryBlogModule } from './category-blog/category-blog.module';
 
 @Module({
   imports: [
@@ -31,9 +32,10 @@ import { CommentModule } from './comment/comment.module';
     BlogModule,
     ApartmentModule,
     ApartmentOwnerModule,
-    ManhModule,
     UserPointModule,
     CommentModule,
+    ContactModule,
+    CategoryBlogModule,
     
   ],
   controllers: [AppController],

@@ -1,4 +1,4 @@
-import { ApartmentArea, ApartmentStatus } from '@prisma/client';
+
 import { IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateApartmentDto {
@@ -42,21 +42,10 @@ export class CreateApartmentDto {
   @IsOptional()
   numRooms?: number;
 
-  @IsEnum(ApartmentStatus)
-  @IsOptional()
-  status?: ApartmentStatus;
-
-  @IsEnum(ApartmentArea)
-  @IsOptional()
-  area?: ApartmentArea;
-
   @IsNumber()
   @IsOptional()
   maxBed?: number;
 
-  @IsNumber()
-  @IsOptional()
-  acreage?: number;
 
   @IsString()
   @IsOptional()

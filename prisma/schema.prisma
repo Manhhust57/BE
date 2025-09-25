@@ -79,6 +79,26 @@ model Comment {
   
   @@map("comments")
 }
+// Thêm model BlogCategory
+model BlogCategory {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  slug        String   @unique
+  description String?  @db.Text
+  color       String?  @db.VarChar(7) // Hex color
+  image       String?  // Featured image
+  
+  isActive    Boolean  @default(true) @map("is_active")
+  sortOrder   Int      @default(0) @map("sort_order")
+  
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  // Relationship với BlogPost
+  posts       BlogPost[] @relation("CategoryPosts")
+  
+  @@map("blog_categories")
+}
 
 model BlogPost {
   id        Int        @id @default(autoincrement())
@@ -92,7 +112,9 @@ model BlogPost {
   updatedAt DateTime   @updatedAt
   author    User       @relation("UserBlogPosts", fields: [authorId], references: [id])
   authorId  Int
-
+// Category relationship - THÊM MỚI
+  category    BlogCategory? @relation("CategoryPosts", fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId  Int?          @map("category_id")
   @@map("blog_posts")
 }
 
@@ -205,4 +227,15 @@ model ApartmentBooking {
   room      Room?     @relation(fields: [roomId], references: [id])
 
   @@map("apartment_bookings")
+}
+model Contact {
+  id        Int      @id @default(autoincrement())
+  firstName String   @map("first_name") @db.VarChar(100)
+  lastName  String   @map("last_name") @db.VarChar(100)
+  email     String   @db.VarChar(255)
+  message   String   @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  
+  @@map("contacts")
 }
